@@ -1,24 +1,74 @@
-# E-commerce API
+E-commerce API - Setup and Running Instructions
+Prerequisites
+Python 3.8 or higher
 
-A complete CRUD API for an e-commerce store built with FastAPI and MySQL.
+MySQL Server 8.0 or higher
 
-## Features
+Git (for cloning the repository)
 
-- User management (Create, Read, Update, Delete)
-- Product management (Create, Read, Update, Delete)
-- Order management (Create, Read)
-- MySQL database integration
-- RESTful API endpoints
+Installation Steps
 
-## Prerequisites
+1. Clone or Download the Project
+   bash
+   git clone <your-repository-url>
+   cd ecommerce-api
+2. Set Up Virtual Environment
+   Windows:
 
-- Python 3.8+
-- MySQL Server
-- pip (Python package manager)
+bash
+python -m venv venv
+venv\\Scripts\\activate
+macOS/Linux:
 
-## Installation
+bash
+python3 -m venv venv
+source venv/bin/activate
+3. Install Dependencies
+bash
+pip install -r requirements.txt
+4. Set Up MySQL Database
+Start MySQL service
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd ecommerce-api
+Log into MySQL: mysql -u root -p
+
+Create database: CREATE DATABASE ecommerce\_store;
+
+Exit MySQL and run: mysql -u root -p ecommerce\_store < database/ecommerce\_store.sql
+
+5. Configure Environment
+   bash
+   cp .env.example .env
+
+# Edit .env file with your database credentials
+
+6. Run the Application
+   bash
+   uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+7. Access the API
+   Main endpoint: http://localhost:8000
+
+Interactive docs: http://localhost:8000/docs
+
+Alternative docs: http://localhost:8000/redoc
+
+Testing the API
+Use the interactive documentation or curl commands to test endpoints:
+
+bash
+
+# Test API is running
+
+curl http://localhost:8000/
+
+# Get all products
+
+curl http://localhost:8000/products/
+Troubleshooting
+Ensure MySQL service is running
+
+Verify database credentials in .env file
+
+Check if port 8000 is available
+
+The API will automatically reload when you make code changes during development.
+
